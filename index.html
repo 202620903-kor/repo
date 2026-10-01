@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>사회생활 START | 고등학생 사회생활 시뮬레이션</title>
+  <meta name="description" content="고등학생이 졸업 후의 월급 관리, 소비, 저축, 직장생활을 미리 체험해보는 사회생활 시뮬레이션" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>" />
+</head>
+<body>
+
+  <!-- ===== 상단 내비게이션 ===== -->
+  <header class="header">
+    <div class="header-inner">
+      <button class="logo" data-view="home" type="button">
+        <span class="logo-icon">🚀</span>
+        <span class="logo-text">사회생활 <em>START</em></span>
+      </button>
+      <nav class="nav" aria-label="주 메뉴">
+        <button class="nav-btn active" data-view="home" type="button"><span>🏠</span>HOME</button>
+        <button class="nav-btn" data-view="setup" type="button"><span>📝</span>사회생활 시작</button>
+        <button class="nav-btn" data-view="money" type="button"><span>💰</span>돈 관리</button>
+        <button class="nav-btn" data-view="work" type="button"><span>💼</span>직장생활</button>
+        <button class="nav-btn" data-view="result" type="button"><span>📊</span>나의 결과</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- ===== 1. HOME ===== -->
+    <section id="view-home" class="view active" aria-label="홈">
+      <div class="hero">
+        <p class="hero-badge">🧑‍🎓 고등학생 사회생활 시뮬레이션</p>
+        <h1 class="hero-title">사회생활 <span>START</span></h1>
+        <p class="hero-sub">졸업 후 내 삶을 미리 경험해보자!</p>
+        <p class="hero-desc">
+          월급 관리부터 소비·저축, 직장에서의 상황 대처까지.<br class="br-m" />
+          한 달 동안의 사회생활을 미리 체험하고 나의 생활 점수를 확인해보세요.
+        </p>
+        <button id="btn-hero-start" class="btn btn-primary btn-lg" type="button">🚀 사회생활 시작하기</button>
+      </div>
+
+      <div class="menu-grid">
+        <button class="menu-card" data-view="setup" type="button">
+          <span class="menu-emoji">📝</span>
+          <strong>사회생활 시작</strong>
+          <p>이름, 직업, 월급, 주거 형태를 정하고 나만의 생활을 만들어요.</p>
+        </button>
+        <button class="menu-card" data-view="money" type="button">
+          <span class="menu-emoji">💰</span>
+          <strong>돈 관리</strong>
+          <p>월급에서 식비·교통비를 쓰고 저축은 물론, 주식 투자로 자산을 불려봐요.</p>
+        </button>
+        <button class="menu-card" data-view="work" type="button">
+          <span class="menu-emoji">💼</span>
+          <strong>직장생활</strong>
+          <p>출근, 실수, 갈등… 회사에서 생기는 상황을 선택하며 해결해요.</p>
+        </button>
+        <button class="menu-card" data-view="result" type="button">
+          <span class="menu-emoji">📊</span>
+          <strong>나의 결과</strong>
+          <p>소비습관, 저축, 직장생활, 생활관리 점수를 별점으로 확인해요.</p>
+        </button>
+      </div>
+
+      <div class="howto card">
+        <h2 class="card-title">이용 방법</h2>
+        <ol class="howto-list">
+          <li><b>사회생활 시작</b>에서 이름·직업·월급·주거 형태를 선택하면 초기 자산이 설정됩니다.</li>
+          <li><b>돈 관리</b>에서 식비·교통비 등 생활비를 쓰고 저축합니다. 생활비는 4주에 나누어 매주 새로 지급돼요.</li>
+          <li><b>다음 주</b>로 넘어가면 새 주간 생활비를 받고 카테고리별 주간 사용액이 초기화돼요. 월 누적 내역은 계속 기록됩니다.</li>
+          <li><b>주식 투자</b>에서 통장이나 이번 주 남은 돈으로 주식을 사고팔며 4주 동안 자산을 불려보세요.</li>
+          <li><b>직장생활</b>에서 선택한 직업에 맞춰진 상황을 해결해보세요.</li>
+          <li><b>나의 결과</b>에서 한 달 생활을 별점과 한 줄 평으로 확인합니다.</li>
+        </ol>
+        <p class="tip">💡 새로고침해도 진행 상황은 그대로 저장돼요! (브라우저 localStorage)</p>
+      </div>
+    </section>
+
+    <!-- ===== 2. 사회생활 시작 ===== -->
+    <section id="view-setup" class="view" aria-label="사회생활 시작">
+      <div class="page-head">
+        <h1>📝 사회생활 시작</h1>
+        <p>졸업 후 나의 모습을 설정해보세요. 선택에 따라 초기 자산이 달라집니다.</p>
+      </div>
+
+      <form id="setup-form" novalidate>
+        <div class="card">
+          <label class="field-label" for="input-name">이름 <span class="req">*</span></label>
+          <input id="input-name" type="text" maxlength="8" placeholder="예: 김고등" autocomplete="off" />
+          <p class="field-help">8자 이내로 입력해주세요.</p>
+        </div>
+
+        <div class="card">
+          <h2 class="card-title">1. 직업 선택 <span class="req">*</span></h2>
+          <p class="field-help">분야별 세부 직업 중 하나를 선택해보세요.</p>
+          <div id="job-list" class="option-grid"></div>
+        </div>
+
+        <div class="card">
+          <h2 class="card-title">2. 월급 선택 <span class="req">*</span></h2>
+          <p class="field-help">월 180만 원부터 500만 원까지 선택할 수 있어요.</p>
+          <div id="salary-list" class="option-grid"></div>
+        </div>
+
+        <div class="card">
+          <h2 class="card-title">3. 주거 형태 선택 <span class="req">*</span></h2>
+          <p class="field-help">주거 형태에 따라 초기 자산이 달라지고, 주거비는 직접 정할 수 있어요.</p>
+          <div id="housing-list" class="option-grid"></div>
+          <div id="cost-row" class="cost-row" hidden>
+            <label class="field-label" for="housing-cost">🏠 매달 나갈 주거비를 직접 정하기 (월세·관리비 등)</label>
+            <div class="cost-input-line">
+              <input id="housing-cost" type="number" min="0" max="100" step="1" inputmode="numeric" placeholder="예: 45" />
+              <span class="cost-unit">만원</span>
+            </div>
+            <p class="field-help">0~100만원까지 입력할 수 있어요. 주거 형태를 다시 선택하면 기본 금액으로 돌아가요.</p>
+          </div>
+        </div>
+
+        <div class="card preview-card">
+          <h2 class="card-title">내 설정 요약</h2>
+          <div id="setup-preview" class="preview">
+            <p class="preview-empty">직업 · 월급 · 주거 형태를 모두 선택하면 요약이 표시돼요.</p>
+          </div>
+          <button id="btn-start-sim" class="btn btn-primary btn-lg btn-block" type="submit">🎉 이 설정으로 사회생활 시작</button>
+        </div>
+      </form>
+
+      <div id="setup-done-box" class="empty-box" hidden>
+        <span class="empty-emoji">✅</span>
+        <p>이미 사회생활을 시작했어요!<br />지금 나의 설정은 아래와 같아요.</p>
+        <div id="setup-current" class="preview-grid" style="width:100%"></div>
+        <div class="result-actions" style="margin-top:8px">
+          <button class="btn btn-primary" data-view="money" type="button">💰 돈 관리로 가기</button>
+          <button id="btn-restart-setup" class="btn btn-danger" type="button">🔄 설정 다시 하기</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 3. 돈 관리 ===== -->
+    <section id="view-money" class="view" aria-label="돈 관리">
+      <div class="page-head">
+        <h1>💰 돈 관리</h1>
+        <p id="money-greet">한 달 동안 돈을 어떻게 쓸지 선택해보세요.</p>
+      </div>
+
+      <div id="money-need-setup" class="empty-box" hidden>
+        <span class="empty-emoji">📝</span>
+        <p>아직 사회생활을 시작하지 않았어요.<br />먼저 내 직업과 월급, 주거 형태를 정해주세요!</p>
+        <button class="btn btn-primary" data-view="setup" type="button">사회생활 시작하러 가기</button>
+      </div>
+
+      <div id="money-content" hidden>
+        <div id="money-summary" class="summary-grid"></div>
+
+        <div class="card">
+          <div class="bar-head">
+            <h2 class="card-title">이번 달 돈 사용 현황</h2>
+            <span id="money-used-ratio" class="bar-ratio"></span>
+          </div>
+          <div class="bar"><div id="money-bar" class="bar-fill"></div></div>
+          <p class="bar-help">월급에서 주거비를 뺀 생활비를 4주에 나누어 받아요. 다음 주 버튼을 누르면 다음 주 생활비가 지급됩니다.</p>
+        </div>
+
+        <h2 class="section-title">카테고리별로 사용하기</h2>
+        <div id="money-categories" class="category-grid"></div>
+
+        <h2 class="section-title">📈 주식 투자 <small class="section-sub">다음 주로 넘어가면 생활비도 새로 지급돼요 · 한 달(4주) 동안 주가가 변해요</small></h2>
+        <div id="stock-section"></div>
+
+        <div id="money-warning" class="warn-box" hidden>⚠️ 이번 주 생활비를 다 썼어요! 다음 주로 넘어가면 새 생활비를 받을 수 있어요.</div>
+
+        <h2 class="section-title">🧾 사용 내역</h2>
+        <div class="card">
+          <ul id="money-log" class="log-list"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 4. 직장생활 ===== -->
+    <section id="view-work" class="view" aria-label="직장생활">
+      <div class="page-head">
+        <h1>💼 직장생활</h1>
+        <p>선택한 직업에서 겪을 수 있는 상황이에요. 어떻게 대처할까요?</p>
+      </div>
+
+      <div id="work-need-setup" class="empty-box" hidden>
+        <span class="empty-emoji">📝</span>
+        <p>아직 사회생활을 시작하지 않았어요.<br />먼저 내 직업과 월급, 주거 형태를 정해주세요!</p>
+        <button class="btn btn-primary" data-view="setup" type="button">사회생활 시작하러 가기</button>
+      </div>
+
+      <div id="work-content" hidden>
+        <div class="card work-meter-card">
+          <div class="bar-head">
+            <h2 class="card-title">나의 직장 생활 점수</h2>
+            <span id="work-score-text" class="bar-ratio"></span>
+          </div>
+          <div class="bar"><div id="work-meter" class="bar-fill bar-blue"></div></div>
+          <p id="work-progress" class="bar-help"></p>
+        </div>
+
+        <div id="work-list" class="situation-list"></div>
+
+        <div id="work-done-box" class="done-box" hidden>
+          ✅ 모든 상황을 해결했어요! <b>나의 결과</b>에서 한 달 생활을 확인해보세요.
+          <button class="btn btn-primary" data-view="result" type="button">나의 결과 보기</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 5. 나의 결과 ===== -->
+    <section id="view-result" class="view" aria-label="나의 결과">
+      <div class="page-head">
+        <h1>📊 나의 결과</h1>
+        <p>한 달 동안의 사회생활 결과를 점수와 별점으로 확인해보세요.</p>
+      </div>
+
+      <div id="result-need-setup" class="empty-box" hidden>
+        <span class="empty-emoji">📝</span>
+        <p>아직 사회생활을 시작하지 않았어요.<br />먼저 내 직업과 월급, 주거 형태를 정해주세요!</p>
+        <button class="btn btn-primary" data-view="setup" type="button">사회생활 시작하러 가기</button>
+      </div>
+
+      <div id="result-need-work" class="empty-box" hidden>
+        <span class="empty-emoji">💼</span>
+        <p id="result-work-progress">직장생활 상황을 모두 해결하면 결과를 확인할 수 있어요.</p>
+        <button class="btn btn-primary" data-view="work" type="button">직장생활 상황 해결하기</button>
+      </div>
+
+      <div id="result-content" hidden>
+        <div id="result-cards" class="result-grid"></div>
+
+        <div class="card result-summary-card">
+          <h2 class="card-title">📄 한 달 생활 총평</h2>
+          <p id="result-summary" class="result-summary"></p>
+        </div>
+
+        <div class="result-actions">
+          <button class="btn btn-ghost" data-view="money" type="button">💰 돈 관리 다시 보기</button>
+          <button class="btn btn-ghost" data-view="work" type="button">💼 직장생활 다시 보기</button>
+          <button id="btn-restart" class="btn btn-danger" type="button">🔄 새로운 시뮬레이션 시작</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>사회생활 START · 고등학생을 위한 사회생활 시뮬레이션 · 모든 데이터는 내 브라우저에만 저장됩니다.</p>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
