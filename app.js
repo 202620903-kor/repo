@@ -520,14 +520,6 @@ function completedWorkScenarioCount(scenarios = getWorkScenarios()) {
   return scenarios.filter((sc) => state.answers[sc.id] !== undefined).length;
 }
 
-function updateResultAccess() {
-  const canViewResult = state.started
-    && completedWorkScenarioCount() === getWorkScenarios().length;
-  document.querySelectorAll('[data-view="result"]').forEach((button) => {
-    button.hidden = !canViewResult;
-  });
-}
-
 function totalSpent() {
   return CATEGORIES.reduce((sum, c) => sum + (state.spent[c.id] || 0), 0);
 }
@@ -1052,10 +1044,7 @@ function renderWork() {
   const started = state.started;
   $("#work-need-setup").hidden = started;
   $("#work-content").hidden = !started;
-  if (!started) {
-    updateResultAccess();
-    return;
-  }
+  if (!started) return;
 
   const score = state.workScore;
   $("#work-score-text").textContent = `${score}점 / 100점`;
@@ -1068,7 +1057,6 @@ function renderWork() {
 
   $("#work-list").innerHTML = scenarios.map((sc) => situationHtml(sc)).join("");
   $("#work-done-box").hidden = doneCount < scenarios.length;
-  updateResultAccess();
 }
 
 function situationHtml(sc) {
@@ -1308,7 +1296,6 @@ function resetAll() {
   if (!confirm("정말 새로 시작할까요? 지금까지의 진행 상황이 모두 지워져요.")) return;
   state = defaultState();
   saveState();
-  updateResultAccess();
   showView("home");
   toast("새로운 시뮬레이션을 준비했어요!");
 }
@@ -1414,7 +1401,6 @@ function bindEvents() {
 function init() {
   loadState();
   bindEvents();
-  updateResultAccess();
 
   // 시작 전 안내 박스 초기 상태
   $("#money-need-setup").hidden = state.started;
